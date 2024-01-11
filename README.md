@@ -14,7 +14,7 @@ Hay [otras libs que hacen lo mismo](https://github.com/contrem/arduino-timer) qu
 
 En el archivo `scheduler.ino`, hay un simple ejemplo de como utilizar Scheduler.
 
-Puedes ver mi sketch "traffic_light" para un ejemplo mas sofisticado.
+Puedes ver mi sketch [*traffic_light*](https://github.com/abril927/ino/tree/main/traffic_light) para un ejemplo mas sofisticado.
 
 ## Licencia
 
