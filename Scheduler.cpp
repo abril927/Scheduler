@@ -16,11 +16,25 @@ Task::Task(int timeLeft, void (*callback)()) {
 Scheduler::Scheduler() {
   for (int i = 0; i < SCHEDULER_MAX_TASKS; i++) {
     _Tasks[i] = Task();
-  }
+  } // FIXME: i don't think we need this here
+
+  // Initialize clock
+  _PreviousMillis = millis();
 }
 
 void Scheduler::Tick() {
-  int delta = 1; // TODO: Look into making delta dynamic, so that Scheduler is actually accurate to realtime.
+  // Scheduler tries its best to run at realtime with this delta variable,
+  // but it still depends on how often it gets ticked.
+  // It'll still be somewhat wrong if it's not ticked enough.
+  // But at least with this, it won't be *too fast* if it's ticked too much..?
+  unsigned long currentMillis = millis();
+  int delta;
+  if (_PreviousMillis > currentMillis) {
+    delta = 1; // If the timer rolls over, just set delta to 0.
+  } else {
+    delta = currentMillis - _PreviousMillis;
+  }
+  _PreviousMillis = currentMillis;
   for (int i = 0; i < SCHEDULER_MAX_TASKS; i++) {
     if (_Tasks[i].Callback != NULL) {
       _Tasks[i].TimeLeft -= delta;

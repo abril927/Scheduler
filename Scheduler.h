@@ -21,6 +21,7 @@ class Scheduler {
     bool Add(Task task);
   private:
     Task _Tasks[SCHEDULER_MAX_TASKS];
+    unsigned long _PreviousMillis;
 };
 
 #endif

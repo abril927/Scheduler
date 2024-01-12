@@ -27,15 +27,11 @@ void toggleLed() {
 
   // Use scheduler to repeat this function in a bit
   // Usar scheduler para repetir esta funcion en un poco
-  scheduler.Add(Task(750, toggleLed));
+  scheduler.Add(Task(500, toggleLed));
 }
 
 void loop() {
   // scheduler.Tick(); must be called in the main loop of the sketch/program
   // scheduler.Tick(); debe ser ejecutado en el bucle principal del sketch/programa
   scheduler.Tick();
-
-  // Because this example program executes really fast, I put a delay(1) here so that it doesn't go so fast you can't see the LED change.
-  // Porque este programa de ejemplo ejecuta muy rapido, puse un delay(1) aqui para que no vaya tan rapido que no puedes ver como cambia el LED.
-  delay(1);
 }
